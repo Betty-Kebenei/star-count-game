@@ -69,6 +69,8 @@ export default {
         }
       } else {
         this.step = 0;
+        this.answer = '';
+        this.stars= 0;
       }
     }
   },
