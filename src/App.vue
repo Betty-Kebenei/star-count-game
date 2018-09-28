@@ -10,7 +10,7 @@
       <div id="answer-section">
         <button @click="reset">Reset</button>
         <button class="answer-section"><strong>ANS: {{ answer }}</strong></button>
-        <button @click="generateRandomNumber">Submit</button>
+        <button @click="submitAnswer">Submit</button>
       </div>
       <div id="select-section">
         <ul class="select-inner-section" v-for="num in 9">
@@ -28,7 +28,8 @@ export default {
     return {
       stars: 0,
       answer: '',
-      step: 0
+      step: 0,
+      answers: []
     }
   },
   methods: {
@@ -37,11 +38,19 @@ export default {
       this.stars = Math.floor(Math.random() * (10 - 1 +1) + 1 );
       this.step = 1;
     },
+
     generateAnswer(num) {
       this.answer = this.answer + num;
     },
+
     reset() {
       this.answer = '';
+    },
+
+    submitAnswer() {
+      this.answers.push(this.answer);
+      this.reset();
+      this.generateRandomNumber(); 
     }
   }
 }
