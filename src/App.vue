@@ -6,12 +6,12 @@
     <div v-if="step === 1">
       <h1>Challenge: {{ challenge }}</h1>
       <div id="star-section" v-for="star in stars">
-        <font-awesome-icon icon="star" />
+        <font-awesome-icon icon="star" class="star-icon" />
       </div>
       <div id="answer-section">
-        <button @click="reset">Reset</button>
+        <button @click="reset">RESET</button>
         <button class="answer-section"><strong>ANS: {{ answer }}</strong></button>
-        <button @click="submitAnswer">Submit</button>
+        <button @click="submitAnswer">SUBMIT</button>
       </div>
       <div id="select-section">
         <ul class="select-inner-section" v-for="num in 9">
@@ -109,6 +109,10 @@ a {
   padding: 40px 0;
 }
 
+.star-icon {
+  font-size: 90px
+}
+
 #start-button {
   position: absolute;
   top: 35%;
@@ -122,10 +126,14 @@ a {
   border-radius: 5px;
 }
 
-.answer-section {
-  background-color: lightblue;
+#answer-section button  {
   padding: 15px;
   margin: 0 10px;
+  font-size: 2rem;
+}
+
+.answer-section {
+  background-color: lightblue;
 }
 
 #select-section {
