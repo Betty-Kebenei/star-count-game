@@ -1,9 +1,17 @@
 <template>
   <div id="app">
-    {{msg}} <br />
-    <ul class="select-section" v-for="num in 9">
-      <li class="select-digit">{{num}}</li>
-    </ul>
+    <button @click="generateRandomNumber">Start</button></br>
+    <div id="star-section" v-for="star in stars">
+      <font-awesome-icon icon="star" />
+    </div>
+    <div id="answer-section">
+      <strong>ANS:</strong> 
+    </div>
+    <div id="select-section">
+      <ul class="select-inner-section" v-for="num in 9">
+        <li class="select-digit">{{num}}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -12,7 +20,12 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      stars: 0
+    }
+  },
+  methods: {
+    generateRandomNumber () {
+      this.stars = Math.floor(Math.random() * (10 - 1 +1) + 1 )
     }
   }
 }
@@ -25,7 +38,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 200px;
 }
 
 h1, h2 {
@@ -46,9 +59,25 @@ a {
   color: #42b983;
 }
 
-.select-section{
+#star-section {
+  display: inline-block;
+  padding: 40px 0;
+}
+
+#answer-section {
+  margin: 40px 0;
+  background-color: lightblue;
+  width: 5%;
+  margin: auto;
+  padding: 15px;
+}
+
+#select-section {
+  padding-top: 40px;
+}
+
+.select-inner-section{
   display: inline;
-  
 }
 
 .select-digit{
