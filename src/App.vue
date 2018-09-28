@@ -53,13 +53,17 @@ export default {
     reset() {
       this.answer = '';
     },
-
+ 
     submitAnswer() {
       if(this.challenge !== 10) {
-        this.answers.push(this.answer);
-        this.challenge++;
-        this.reset();
-        this.generateRandomNumber(); 
+        if(this.stars === Number(this.answer)) {
+          this.answers.push(this.answer);
+          this.challenge++;
+          this.reset();
+          this.generateRandomNumber(); 
+        } else {
+          alert('Wrong Answer, please submit another answer')
+        }
       } else {
         this.step = 0;
       }
