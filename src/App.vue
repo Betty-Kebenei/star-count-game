@@ -4,6 +4,7 @@
       <button @click="startGame">START</button>
     </div>
     <div v-if="step === 1">
+      <stop-watch />
       <h1>Challenge: {{ challenge }}</h1>
       <div id="star-section" v-for="star in stars">
         <font-awesome-icon icon="star" class="star-icon" />
@@ -23,6 +24,8 @@
 </template>
 
 <script>
+import StopWatch from './components/StopWatch';
+
 export default {
   name: 'app',
   data () {
@@ -43,7 +46,7 @@ export default {
 
     generateRandomNumber() {
       // Math.floor(Math.random() * (max -min +1)) + min;
-      this.stars = Math.floor(Math.random() * (10 - 1 +1) + 1 );
+      this.stars = Math.floor(Math.random() * (9 - 1 +1) + 1 );
     },
 
     generateAnswer(num) {
@@ -68,6 +71,9 @@ export default {
         this.step = 0;
       }
     }
+  },
+  components: {
+    'stop-watch': StopWatch
   }
 }
 </script>
