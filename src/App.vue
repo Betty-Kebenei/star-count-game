@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <div id="start-button" v-if="step === 0">
-      <button @click="generateRandomNumber">START</button>
+      <button @click="startGame">START</button>
     </div>
     <div v-if="step === 1">
+      <h1>Challenge: {{ challenge }}</h1>
       <div id="star-section" v-for="star in stars">
         <font-awesome-icon icon="star" />
       </div>
@@ -29,14 +30,20 @@ export default {
       stars: 0,
       answer: '',
       step: 0,
-      answers: []
+      answers: [],
+      challenge: 0
     }
   },
   methods: {
+    startGame() {
+      this.generateRandomNumber();
+      this.step = 1;
+      this.challenge = 1;
+    },
+
     generateRandomNumber() {
       // Math.floor(Math.random() * (max -min +1)) + min;
       this.stars = Math.floor(Math.random() * (10 - 1 +1) + 1 );
-      this.step = 1;
     },
 
     generateAnswer(num) {
@@ -48,9 +55,14 @@ export default {
     },
 
     submitAnswer() {
-      this.answers.push(this.answer);
-      this.reset();
-      this.generateRandomNumber(); 
+      if(this.challenge !== 10) {
+        this.answers.push(this.answer);
+        this.challenge++;
+        this.reset();
+        this.generateRandomNumber(); 
+      } else {
+        this.step = 0;
+      }
     }
   }
 }
