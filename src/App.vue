@@ -1,7 +1,12 @@
 <template>
   <div id="app">
-    <div id="start-button" v-if="step === 0">
-      <button @click="startGame">START</button>
+    <div id="start-end">
+      <button class="first" v-if="step === 0" @click="startGame">START GAME</button>
+      <div v-if="step === 3">
+        <p>Game Ended</p>
+        <p>Score:</p>
+        <button @click="startGame">PLAY AGAIN</button>
+      </div>
     </div>
     <div v-if="step === 1">
       <stop-watch />
@@ -68,9 +73,9 @@ export default {
           alert('Wrong Answer, please submit another answer')
         }
       } else {
-        this.step = 0;
+        this.step = 3;
         this.answer = '';
-        this.stars= 0;
+        this.stars = 0;
       }
     }
   },
@@ -121,17 +126,24 @@ a {
   font-size: 90px
 }
 
-#start-button {
-  position: absolute;
-  top: 35%;
-  left: 47%;
+#start-end {
+  text-align: center;
 }
 
-#start-button button {
+#start-end button {
   padding: 15px;
   font-size: 2rem;
   font-weight: bold;
   border-radius: 5px;
+}
+
+#start-end .first {
+  margin-top: 30%;
+}
+
+#start-end p {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 #answer-section button  {
